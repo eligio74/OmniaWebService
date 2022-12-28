@@ -9,6 +9,7 @@ public interface ISpeseService
         Task <bool> SpesaExistsAsync(string descrizione);
         Task<decimal> GetSaldoAsync();
         Task<decimal> GetTotaleSpeseAsync();
+        Task<double> GetTotaleAccantonamentiAsync();
         Task<List<SpesaViewModel>> GetSpeseAsync();
         Task<SpesaViewModel> CreaSpesaAsync(SpesaCreateInputModel inputModel);
         Task<DettaglioSpesaViewModel> CreaDettaglioAsync(SpesaConsuntivaInputModel inputModel);

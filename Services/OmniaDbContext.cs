@@ -13,6 +13,7 @@ namespace OmniaWebService.Services
 
       public virtual DbSet<SaldiCC> SaldiCC => Set<SaldiCC>();
       public virtual DbSet<Spese> Spese => Set<Spese>();
+      public virtual DbSet<Accantonamenti> Accantonamenti => Set<Accantonamenti>();
       public virtual DbSet<DettaglioSpese> DettaglioSpese => Set<DettaglioSpese>();
 
       protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -36,6 +37,9 @@ namespace OmniaWebService.Services
 
          modelBuilder.Entity<DettaglioSpese>()
             .HasKey(a=> new {a.Id});
+
+         modelBuilder.Entity<Accantonamenti>()
+            .HasKey(a=> new{a.Id});
 
          //In questo ambito vengono anche create le relazioni tra le tabelle
       }

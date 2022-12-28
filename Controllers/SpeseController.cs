@@ -120,5 +120,21 @@ namespace OmniaWebService.Controllers
          return Ok(totaleSpese);
       }
 
+      [HttpGet("GetTotaleAccantonamenti")]
+      [ProducesResponseType(400)]
+      [ProducesResponseType(404)]
+      [ProducesResponseType(200, Type = typeof(double))]
+      public async Task<IActionResult> GetTotaleAccantonamenti()
+      {
+         
+         double totaleAccantonamenti = await SpeseService.GetTotaleAccantonamentiAsync();
+
+         if (!ModelState.IsValid)
+         {
+            return BadRequest(ModelState);
+         }
+
+         return Ok(totaleAccantonamenti);
+      }
    }
 }
