@@ -67,9 +67,13 @@ namespace OmniaWebService.Services.GestioneSpese
             .ToListAsync();
       }
 
-      public Task<decimal> GetSaldoAsync()
+      //public async Task<SaldiCC> GetSaldoAsync()
+      public async Task<decimal> GetSaldoAsync()
       {
-         throw new NotImplementedException();
+         return await this.omniaDbContext.SaldiCC
+            .OrderByDescending(a => a.DataOraAggiornamento)
+            .Select(p=>p.Saldo)
+            .FirstOrDefaultAsync();
       }
 
       public Task<SpesaViewModel> GetSpesaAsync(int id)

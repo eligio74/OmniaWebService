@@ -85,5 +85,22 @@ namespace OmniaWebService.Controllers
          }
          return Ok(dettaglioSpeseDto); 
       }
+      
+      [HttpGet("GetSaldoContabile")]
+      [ProducesResponseType(400)]
+      [ProducesResponseType(404)]
+      [ProducesResponseType(200, Type = typeof(decimal))]
+      public async Task<IActionResult> GetSaldoContabile()
+      {
+         
+         decimal saldo = await SpeseService.GetSaldoAsync();
+
+         if (!ModelState.IsValid)
+         {
+            return BadRequest(ModelState);
+         }
+
+         return Ok(saldo);
+      }
    }
 }
