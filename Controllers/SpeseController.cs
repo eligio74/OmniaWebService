@@ -102,5 +102,23 @@ namespace OmniaWebService.Controllers
 
          return Ok(saldo);
       }
+
+      [HttpGet("GetTotaleSpese")]
+      [ProducesResponseType(400)]
+      [ProducesResponseType(404)]
+      [ProducesResponseType(200, Type = typeof(decimal))]
+      public async Task<IActionResult> GetTotaleSpese()
+      {
+         
+         decimal totaleSpese = await SpeseService.GetTotaleSpeseAsync();
+
+         if (!ModelState.IsValid)
+         {
+            return BadRequest(ModelState);
+         }
+
+         return Ok(totaleSpese);
+      }
+
    }
 }

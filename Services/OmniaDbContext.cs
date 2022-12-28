@@ -28,6 +28,12 @@ namespace OmniaWebService.Services
          modelBuilder.Entity<Spese>()
             .HasKey(a=> new {a.Id});
 
+         // N.B. Questo blocco di codice si rende necessario per un bug di Entity Framerok per Sqlite sui decimal
+         modelBuilder.Entity<Spese>()
+            .Property(e=> e.Importo)
+            .HasConversion<double>();
+
+
          modelBuilder.Entity<DettaglioSpese>()
             .HasKey(a=> new {a.Id});
 

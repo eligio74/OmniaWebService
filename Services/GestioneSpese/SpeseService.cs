@@ -75,6 +75,15 @@ namespace OmniaWebService.Services.GestioneSpese
             .Select(p=>p.Saldo)
             .FirstOrDefaultAsync();
       }
+      public async Task<decimal> GetTotaleSpeseAsync()
+      {
+
+         // decimal? sum = omniaDbContext.Spese.Select(x => x.Importo).SumAsync();
+         // return sum;
+
+         return await omniaDbContext.Spese.Where(y=>y.Status == 1).Select(x => x.Importo).SumAsync();
+         
+      }
 
       public Task<SpesaViewModel> GetSpesaAsync(int id)
       {
@@ -91,10 +100,7 @@ namespace OmniaWebService.Services.GestioneSpese
          throw new NotImplementedException();
       }
 
-      public Task<decimal> GetTotaleSpeseAsync()
-      {
-         throw new NotImplementedException();
-      }
+
 
       public Task ResetAsync()
       {
